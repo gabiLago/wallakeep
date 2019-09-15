@@ -2,6 +2,8 @@ import React from "react";
 import './SaleSearch.css'
 import SaleService from "../../services/SaleService";
 import SaleItem from "../sale-item/SaleItem";
+import {signedIn} from "../../services/Util";
+
 
 const service = new SaleService();
 
@@ -10,6 +12,9 @@ export default class SaleSearch extends React.Component {
         super(props);
 
         // 3. Comprobar que el usuario se ha registrado
+        if (!signedIn()) {
+            props.history.push("/sign-in")
+        }
 
         // 3. Si el usuario especificó un tag en el registro, se debe añadir por defecto a la búsqueda
         this.state = {

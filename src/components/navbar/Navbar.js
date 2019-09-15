@@ -1,7 +1,7 @@
 import {Link, withRouter} from "react-router-dom";
 import React from "react";
 import './Navbar.css';
-import {currentUser, logout} from "../../services/Util";
+import {currentUser, logout, signedIn} from "../../services/Util";
 
 // ESTE FICHERO NO HAY QUE TOCARLO
 
@@ -14,6 +14,9 @@ class Navbar extends React.Component {
         super(props);
 
         // 3. Comprobar que el usuario se ha registrado
+        if (!signedIn()) {
+            props.history.push("/sign-in")
+        }
 
         this.state = {
             location: props.location.pathname

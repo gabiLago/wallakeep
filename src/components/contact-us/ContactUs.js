@@ -1,6 +1,6 @@
 import React from "react";
 import './ContactUs.css';
-import {getSavedMessages, saveMessages} from "../../services/Util";
+import {getSavedMessages, saveMessages, signedIn} from "../../services/Util";
 import ContactUsForm from "../contact-us-form/ContactUsForm";
 import MyMessages from "../my-messages/MyMessages";
 
@@ -9,6 +9,9 @@ export default class ContactUs extends React.Component {
         super(props);
 
         // 3. Comprobar que el usuario se ha registrado
+        if (!signedIn()) {
+            props.history.push("/sign-in")
+        }
 
         this.state = {
             messages: getSavedMessages()
