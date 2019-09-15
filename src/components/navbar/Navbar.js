@@ -13,7 +13,7 @@ class Navbar extends React.Component {
     constructor(props) {
         super(props);
 
-        // 3. Comprobar que el usuario se ha registrado
+        //! 3. Comprobar que el usuario se ha registrado
         if (!signedIn()) {
             props.history.push("/sign-in")
         }

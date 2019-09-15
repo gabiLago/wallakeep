@@ -8,7 +8,7 @@ export default class ContactUs extends React.Component {
     constructor(props) {
         super(props);
 
-        // 3. Comprobar que el usuario se ha registrado
+        //! 3. Comprobar que el usuario se ha registrado
         if (!signedIn()) {
             props.history.push("/sign-in")
         }
@@ -38,7 +38,9 @@ export default class ContactUs extends React.Component {
                         <ContactUsForm onSubmit={this.onSubmit}/>
                     </div>
                     <div className="col-6 text-center">
-                        {/*4. Es necesario un contexto para poder pasarle los mensajes*/}
+                        {
+                            //TODO 4. Es necesario un contexto para poder pasarle los mensajes 
+                        }
                         <MyMessages/>
                     </div>
                 </div>

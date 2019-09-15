@@ -10,13 +10,14 @@ const service = new SaleService();
 export default class SaleSearch extends React.Component {
     constructor(props) {
         super(props);
-
-        // 3. Comprobar que el usuario se ha registrado
+        
+        //!  3. Comprobar que el usuario se ha registrado        
         if (!signedIn()) {
             props.history.push("/sign-in")
         }
-
-        // 3. Si el usuario especificó un tag en el registro, se debe añadir por defecto a la búsqueda
+        
+        // TODO 3. Si el usuario especificó un tag en el registro, se debe añadir por defecto a la búsqueda
+        
         this.state = {
             search: {}
         };
@@ -25,10 +26,13 @@ export default class SaleSearch extends React.Component {
 
         this.handleSearch = this.handleSearch.bind(this);
         this.search = this.search.bind(this);
-
-        // Retrieve the tags needed to filter sales
-        // 1. Este servicio como el <select> que hay en el render se pueden sustituir por el componente <Tags>
-        // 1. Para más información de como se usa ver el componente SignIn
+        
+        // TODO Retrieve the tags needed to filter sales
+        
+        // TODO 1. Este servicio como el <select> que hay en el render se pueden sustituir por el componente <Tags>
+        
+        // TODO 1. Para más información de como se usa ver el componente SignIn
+        
         service.getTags().then((res) => {
             if (res.ok) {
                 this.setState({
@@ -39,7 +43,7 @@ export default class SaleSearch extends React.Component {
     }
 
     search() {
-        // 2. Llamar al servicio service.getSales(this.state.search), gestionar su petición y añadir al estado su resultado
+        // TODO 2. Llamar al servicio service.getSales(this.state.search), gestionar su petición y añadir al estado su resultado
     }
 
     handleSearch(event) {
