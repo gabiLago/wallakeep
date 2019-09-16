@@ -3,9 +3,16 @@
 
 export const HOST = "https://nodepop.lagoblasco.es";
 export const API = `apiv1`;
+export const LOGIN_PATH = 'usuarios/login/';
+export const ADS_PATH = 'anuncios';
+
+export const API_USER = 'admin@example.org';
+export const API_PASSWORD = '1234';
+export const API_TOKEN = "currentToken";
 
 export const USER_SESSION_KEY = "currentUser";
 export const MESSAGES_SESSION_KEY = "messages";
+
 
 export const EIGHTEEN_YEARS_IN_MILLISECONDS = 18 * 365 * 24 * 60 * 60 * 1000;
 
@@ -35,6 +42,10 @@ export const currentUser = () => {
     return JSON.parse(sessionStorage.getItem(USER_SESSION_KEY));
 };
 
+export const currentApiToken = () => {
+    return JSON.parse(sessionStorage.getItem(API_TOKEN));
+}
+
 export const getSavedMessages = () => {
     return JSON.parse(sessionStorage.getItem(MESSAGES_SESSION_KEY)) || [];
 };
@@ -42,3 +53,31 @@ export const getSavedMessages = () => {
 export const saveMessages = (messages) => {
     return sessionStorage.setItem(MESSAGES_SESSION_KEY, JSON.stringify(messages));
 };
+
+export const apiLogIn = () => {
+    return (
+        fetch(`${HOST}/${API}/${LOGIN_PATH}`, {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                email: API_USER,
+                password: API_PASSWORD
+            })
+        })
+    ).then(res => res.json());
+  }
+
+export const authOnApi = () => {
+    apiLogIn().then((data) => sessionStorage.setItem(API_TOKEN, JSON.stringify(data.result)))
+}
+
+export const getApiToken = () => {
+    authOnApi()
+    console.log(currentApiToken)
+    
+    //const hasData = this.state.data && Object.keys(this.state.data);
+    //Object.keys(this.state.data).map((key) => console.log(this.state.data[key]))
+}

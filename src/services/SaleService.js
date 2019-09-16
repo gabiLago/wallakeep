@@ -1,6 +1,9 @@
 import {API, HOST} from "./Util";
 
 export default class SaleService {
+   
+
+
     getSales({start, limit, sort, includeTotal = true, tag, price, name}) {
         // TODO Empezamos la query
         let query = "?";
