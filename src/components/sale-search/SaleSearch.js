@@ -25,6 +25,7 @@ export default class SaleSearch extends React.Component {
         this.search();
 
         this.handleSearch = this.handleSearch.bind(this);
+        this.handleChange = this.handleChange.bind(this);
         this.search = this.search.bind(this);
         
         // TODO Retrieve the tags needed to filter sales
@@ -34,46 +35,62 @@ export default class SaleSearch extends React.Component {
         // TODO 1. Para más información de como se usa ver el componente SignIn
         
         service.getTags().then((res) => {
-            if (res.ok) {
+            
+            if (res) {
                 this.setState({
-                    tags: res.allowedTags
+                    tags: res.result
                 })
             }
         });
     }
 
+
+
     search() {
         // TODO 2. Llamar al servicio service.getSales(this.state.search), gestionar su petición y añadir al estado su resultado
+        console.log(JSON.stringify(this.state.search))
+        service.getSales(this.state.search).then((data) => this.setState({sales: data.result}))      
     }
 
+    handleChange(event) {
+        const field = event.target.name;
+        this.setState({ [field]: event.target.value });
+    }
+  
     handleSearch(event) {
         const {name, value} = event.target;
-
-        this.setState({
+        
+        //? Added prevState to avoid overwriting the state only with data from one field. Now it filters from both Inputs and the Select
+        this.setState(prevState => ({
             search: {
-                [name]: value.trim().length ? value.trim() : null
+                ...prevState.search,
+                [name]: value.trim().length ? value.trim() : ""
             }
-        }, () => {
+        }), () => {
             this.search();
         });
-
-    }
+    }   
+    
 
     render() {
+        
+
         return (
             <div className={`sale-search container`}>
-                <div className="row mb-3">
+                <form className="row mb-3">
                     <input name="name" onChange={this.handleSearch} className={`form-control col-2 ml-4`} placeholder={`Filter by name`}/>
                     <input name="price" type="number" onChange={this.handleSearch} className={`form-control col-1 ml-4`} placeholder={`Price`}/>
+                    
                     {
                         this.state.tags
                         &&
                         <select name="tag" value={this.state.search.tag} onChange={this.handleSearch} className={`form-control col-2 ml-4`}>
-                            <option value="">Filter by tag</option>
+                            <option value="undefined">Filter by tag</option>
                             {this.state.tags.map((tag, index) => <option key={`${tag}-${index}`} value={tag}>{tag}</option>)}
                         </select>
                     }
-                </div>
+                </form>
+                       
 
                 {
                     ((this.state.sales && !this.state.sales.length) || !this.state.sales)
@@ -99,6 +116,8 @@ export default class SaleSearch extends React.Component {
                         </div>
                     )
                 }
+
+                
             </div>
         );
     }

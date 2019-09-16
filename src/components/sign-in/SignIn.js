@@ -3,6 +3,8 @@ import './SignIn.css';
 import Tags from "../tags/Tags";
 import {USER_SESSION_KEY, signedIn, isOldThan18YearsOld} from "../../services/Util";
 import {withRouter} from "react-router-dom";
+import {authOnApi} from "../../services/Util";
+
 
 class SignIn extends React.Component {
     constructor(props) {
@@ -23,6 +25,11 @@ class SignIn extends React.Component {
 
         this.handleTyping = this.handleTyping.bind(this);
         this.handleSignIn = this.handleSignIn.bind(this);
+    }
+
+    componentDidMount(){
+        //? Authenticate to get the Token that will allow any further call to the API
+        authOnApi();
     }
 
     handleTyping(event) {

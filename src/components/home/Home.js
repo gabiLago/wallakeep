@@ -4,7 +4,7 @@ import Navbar from "../navbar/Navbar";
 import SaleSearch from "../sale-search/SaleSearch";
 import ContactUs from "../contact-us/ContactUs";
 import {Route} from "react-router-dom";
-import {signedIn, authOnApi} from "../../services/Util";
+import {signedIn} from "../../services/Util";
 
 
 
@@ -16,11 +16,6 @@ export default class Home extends React.Component {
         if (!signedIn()) {
             props.history.push("/sign-in")
         }
-    }
-
-    componentDidMount(){
-        //? Authenticate to get the Token that will allow any further call to the API
-        authOnApi();
     }
 
     render() {
