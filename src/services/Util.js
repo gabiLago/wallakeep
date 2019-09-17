@@ -12,7 +12,7 @@ export const API_TOKEN = "currentToken";
 
 export const USER_SESSION_KEY = "currentUser";
 export const MESSAGES_SESSION_KEY = "messages";
-
+export const FAVOURITE_TAG = "tag";
 
 export const EIGHTEEN_YEARS_IN_MILLISECONDS = 18 * 365 * 24 * 60 * 60 * 1000;
 
@@ -39,6 +39,7 @@ export const logout = () => {
 export const currentUser = () => {
     return JSON.parse(sessionStorage.getItem(USER_SESSION_KEY));
 };
+
 
 export const apiToken = () => {
     return JSON.parse(sessionStorage.getItem(API_TOKEN));

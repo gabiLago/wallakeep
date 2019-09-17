@@ -88,7 +88,7 @@ class SignIn extends React.Component {
                         <input type="date" name="birthday" value={this.state.birthday} className={`form-control`} onChange={this.handleTyping} placeholder="Birthday"/>
                     </div>
                     <div className="col-4 mt-4">
-                        <Tags name="tag" onTagChange={this.handleTyping} firstOptionName="Favourite tag" class="form-control"/>
+                        <Tags name="tag" onTagChange={this.handleTyping} firstOptionName="Favourite tag" class="form-control" value={this.state.tag}/>
                     </div>
 
                     <div className="col-12 mt-4">

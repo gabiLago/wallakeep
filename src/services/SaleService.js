@@ -22,8 +22,6 @@ export default class SaleService {
         //? Query for "tags"
         query += tag !== undefined ? `&tag=${tag}` : "";
 
-        console.log(query)
-
         return fetch(`${HOST}/${API}/${ADS_PATH}${query}`, {
             method: "GET"
         }).then(res => res.json());
@@ -36,6 +34,6 @@ export default class SaleService {
             method: "GET"
         }).then(res => res.json());
         
-        // TODO 2. Eliminar estas líneas y realizar la llamada a NodePop para obtener todos los tags
+        //! 2. Eliminar estas líneas y realizar la llamada a NodePop para obtener todos los tags
     }
 }

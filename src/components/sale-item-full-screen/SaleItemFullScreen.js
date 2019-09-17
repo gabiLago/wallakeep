@@ -46,7 +46,6 @@ export default class SaleItemFullScreen extends React.Component {
         return (
             
             <div className={`container sale-desc`}>
-                <h2>SaleItem</h2>
                 
                 <BackButton/>
                 <div className="text-center">
