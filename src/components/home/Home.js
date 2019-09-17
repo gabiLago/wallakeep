@@ -5,6 +5,8 @@ import SaleSearch from "../sale-search/SaleSearch";
 import ContactUs from "../contact-us/ContactUs";
 import {Route} from "react-router-dom";
 import {signedIn} from "../../services/Util";
+import SaleItemFullScreen from "../sale-item-full-screen/SaleItemFullScreen"
+
 
 
 
@@ -19,7 +21,7 @@ export default class Home extends React.Component {
     }
 
     render() {
-        return <div>
+        return( <div>
             
             <div className="App">
                 <header className="App-header">
@@ -44,7 +46,9 @@ export default class Home extends React.Component {
                 </header>
                 <Navbar/>
                
-                {/*1. Aquí se añadiría el error boundary para que si la aplicación sufre un fallo se controle y se muestre un mensaje*/}
+                {
+                // TODO 1. Aquí se añadiría el error boundary para que si la aplicación sufre un fallo se controle y se muestre un mensaje
+                }
                 <Route exact path="/home/" component={() => (<div className="container home">
                     <i>What are you looking for? A car? A bicycle? then...</i>
                     <h2>This is your place!</h2>
@@ -52,10 +56,15 @@ export default class Home extends React.Component {
                
                 <Route exact path={`${this.props.match.path}/search`} component={SaleSearch}/>
 
-                {/*1. Crear la ruta correspondiente a el componente SaleItemFullScreen, para más información ver el componente.*/}
+                {  
+                //!1. Crear la ruta correspondiente a el componente SaleItemFullScreen, para más información ver el componente. 
+                }
+                
                 <Route exact path={`${this.props.match.path}/contact-us`} component={ContactUs}/>
+                <Route exact path={`${this.props.match.path}/sale/:id`} component={SaleItemFullScreen}/>
 
             </div>
         </div>
+        )
     }
 }

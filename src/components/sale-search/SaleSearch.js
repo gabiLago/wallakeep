@@ -3,6 +3,7 @@ import './SaleSearch.css'
 import SaleService from "../../services/SaleService";
 import SaleItem from "../sale-item/SaleItem";
 import {signedIn} from "../../services/Util";
+import Tags from "../tags/Tags";
 
 
 const service = new SaleService();
@@ -28,27 +29,14 @@ export default class SaleSearch extends React.Component {
         this.handleChange = this.handleChange.bind(this);
         this.search = this.search.bind(this);
         
-        // TODO Retrieve the tags needed to filter sales
-        
-        // TODO 1. Este servicio como el <select> que hay en el render se pueden sustituir por el componente <Tags>
-        
-        // TODO 1. Para más información de como se usa ver el componente SignIn
-        
-        service.getTags().then((res) => {
-            
-            if (res) {
-                this.setState({
-                    tags: res.result
-                })
-            }
-        });
+        //? Retrieve the tags needed to filter sales       
+        //! Este servicio como el <select> que hay en el render se pueden sustituir por el componente <Tags>
     }
 
 
 
     search() {
-        // TODO 2. Llamar al servicio service.getSales(this.state.search), gestionar su petición y añadir al estado su resultado
-        console.log(JSON.stringify(this.state.search))
+        //! 2. Llamar al servicio service.getSales(this.state.search), gestionar su petición y añadir al estado su resultado
         service.getSales(this.state.search).then((data) => this.setState({sales: data.result}))      
     }
 
@@ -60,7 +48,7 @@ export default class SaleSearch extends React.Component {
     handleSearch(event) {
         const {name, value} = event.target;
         
-        //? Added prevState to avoid overwriting the state only with data from one field. Now it filters from both Inputs and the Select
+        //* Added prevState to avoid overwriting the state only with data from one field. Now it filters from both Inputs and the Select
         this.setState(prevState => ({
             search: {
                 ...prevState.search,
@@ -80,18 +68,9 @@ export default class SaleSearch extends React.Component {
                 <form className="row mb-3">
                     <input name="name" onChange={this.handleSearch} className={`form-control col-2 ml-4`} placeholder={`Filter by name`}/>
                     <input name="price" type="number" onChange={this.handleSearch} className={`form-control col-1 ml-4`} placeholder={`Price`}/>
-                    
-                    {
-                        this.state.tags
-                        &&
-                        <select name="tag" value={this.state.search.tag} onChange={this.handleSearch} className={`form-control col-2 ml-4`}>
-                            <option value="undefined">Filter by tag</option>
-                            {this.state.tags.map((tag, index) => <option key={`${tag}-${index}`} value={tag}>{tag}</option>)}
-                        </select>
-                    }
+                    <Tags name="tag" onTagChange={this.handleSearch} firstOptionName="Favourite tag" class="form-control"/>
                 </form>
                        
-
                 {
                     ((this.state.sales && !this.state.sales.length) || !this.state.sales)
                     &&
@@ -107,7 +86,7 @@ export default class SaleSearch extends React.Component {
                             {
                                 this.state.sales.map((sale, index) => {
                                     return (
-                                        <div key={sale._id} className="col-4" onClick={() => this.props.history.push(`/sale/${sale._id}`)}>
+                                        <div key={sale._id} className="col-4" onClick={() => this.props.history.push(`sale/${sale._id}`)}>
                                             <SaleItem item={sale}/>
                                         </div>
                                     )
@@ -115,9 +94,7 @@ export default class SaleSearch extends React.Component {
                             }
                         </div>
                     )
-                }
-
-                
+                }        
             </div>
         );
     }

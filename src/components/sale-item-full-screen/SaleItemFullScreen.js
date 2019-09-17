@@ -16,15 +16,21 @@ export default class SaleItemFullScreen extends React.Component {
             item: {}
         };
 
+        
+
         // This ISN'T the way to get a individual item
-        // The backend MUST HAVE ANE ENDPOINT TO GET SOME EXTRA DETAILS
+        // The backend MUST HAVE AN ENDPOINT TO GET SOME EXTRA DETAILS
         // of one sale
         // DON'T DO IT in real application, this is only educational purpose
         service.getSales({}).then((res) => {
-            const items = res.result.rows;
+            const items = res.result;
+            console.log(items) 
 
+            //console.log(this.props.match.params)
+           
             let item = items.find((item) => item._id === this.props.match.params.id);
 
+            console.log('Item: '+ JSON.stringify(item))
             if (!item) {
                 this.props.history.goBack();
             }
@@ -38,7 +44,10 @@ export default class SaleItemFullScreen extends React.Component {
 
     render() {
         return (
+            
             <div className={`container sale-desc`}>
+                <h2>SaleItem</h2>
+                
                 <BackButton/>
                 <div className="text-center">
                     <img className={`item-image`} src={`${HOST}${this.state.item.foto}`} alt={this.state.item.nombre}/>

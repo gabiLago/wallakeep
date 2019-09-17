@@ -20,7 +20,9 @@ export default class SaleService {
         query += price ? `&precio=${price}-` : "";
 
         //? Query for "tags"
-        query += tag !== "undefined" ? `&tag=${tag}` : "";
+        query += tag !== undefined ? `&tag=${tag}` : "";
+
+        console.log(query)
 
         return fetch(`${HOST}/${API}/${ADS_PATH}${query}`, {
             method: "GET"

@@ -3,6 +3,7 @@ import SaleService from "../../services/SaleService";
 
 
 // ESTE FICHERO NO HAY QUE TOCARLO
+//* Minor adjustments on res array made to fit on my nodepop version 
 
 const service = new SaleService();
 
@@ -15,9 +16,9 @@ export default class Tags extends Component {
         };
 
         service.getTags().then((res) => {
-            if (res.ok) {
+            if (res) {
                 this.setState({
-                    tags: res.allowedTags
+                    tags: res.result
                 })
             }
         });
