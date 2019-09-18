@@ -26,7 +26,9 @@ class Navbar extends React.Component {
     }
 
     logout() {
-        logout();
+      logout();
+    //        sessionStorage.removeItem(currentUser);
+
         this.props.history.push("/sign-in")
     }
 
@@ -37,19 +39,19 @@ class Navbar extends React.Component {
     render() {
         return (
             <div className="container">
-                <span className={`nav-bar-link ${this.isActive(HOME_PATH)}`}><
+                <button className={`btn btn-light ${this.isActive(HOME_PATH)}`}><
                     Link to={HOME_PATH}> Home </Link>
-                </span>
-                <span className={`nav-bar-link ${this.isActive(SEARCH_PATH)}`}>
+                </button>
+                <button className={`btn btn-light ${this.isActive(SEARCH_PATH)}`}>
                     <Link to={SEARCH_PATH}> Search </Link>
-                </span>
-                <span className={`nav-bar-link ${this.isActive(CONTACT_US_PATH)}`}>
+                </button>
+                <span className={`btn btn-light ${this.isActive(CONTACT_US_PATH)}`}>
                     <Link to={CONTACT_US_PATH}> Contact us </Link>
                 </span>
-                <span className={`nav-bar-link float-right`} onClick={this.logout}>
+                <button className={`btn btn-light float-right`} onClick={this.logout}>
                     {currentUser() && <h5 className={`user-info`}>{currentUser().name} {currentUser().surname}</h5>}
                     <span>Log out</span>
-                </span>
+                </button>
             </div>
         );
     }

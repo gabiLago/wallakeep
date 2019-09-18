@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import SaleService from "../../services/SaleService";
 
 
+
 // ESTE FICHERO NO HAY QUE TOCARLO
 //* Minor adjustments on res array made to fit on my nodepop version and 'value' added to defaultProps to allow favouriteTag on the Select
 
@@ -23,7 +24,6 @@ export default class Tags extends Component {
             }
         });
     }
-    
 
     render() {
         return (

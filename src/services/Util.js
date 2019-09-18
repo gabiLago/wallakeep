@@ -42,7 +42,7 @@ export const currentUser = () => {
 
 
 export const apiToken = () => {
-    return JSON.parse(sessionStorage.getItem(API_TOKEN));
+    return JSON.parse(localStorage.getItem(API_TOKEN));
 }
 
 export const getSavedMessages = () => {
@@ -70,5 +70,5 @@ export const apiLogIn = () => {
   }
 
 export const authOnApi = () => {
-    apiLogIn().then((data) => sessionStorage.setItem(API_TOKEN, JSON.stringify(data.result)))
+    apiLogIn().then((data) => localStorage.setItem(API_TOKEN, JSON.stringify(data.result)))
 }

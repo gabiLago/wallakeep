@@ -1,14 +1,17 @@
 import React from "react";
 import './SignIn.css';
 import Tags from "../tags/Tags";
-import {USER_SESSION_KEY, signedIn, isOldThan18YearsOld} from "../../services/Util";
+import {USER_SESSION_KEY, signedIn, isOldThan18YearsOld, authOnApi, apiToken} from "../../services/Util";
 import {withRouter} from "react-router-dom";
-import {authOnApi} from "../../services/Util";
+
 
 
 class SignIn extends React.Component {
     constructor(props) {
         super(props);
+
+        //? Authenticate to get the Token that will allow any further call to the API
+        
 
         //! 3. Comprobar si ya ha iniciado sesión, si es así redirigir a /home
         if (signedIn()) {
@@ -16,6 +19,10 @@ class SignIn extends React.Component {
         } else {
             props.history.push("/sign-in")
         }
+
+        
+        authOnApi();
+        console.log(apiToken)
 
         this.state = {
             name: "",
@@ -27,10 +34,7 @@ class SignIn extends React.Component {
         this.handleSignIn = this.handleSignIn.bind(this);
     }
 
-    componentDidMount(){
-        //? Authenticate to get the Token that will allow any further call to the API
-        authOnApi();
-    }
+       
 
     handleTyping(event) {
         const {name, value} = event.target;
@@ -85,7 +89,7 @@ class SignIn extends React.Component {
                         <input type="text" name="surname" value={this.state.surname} className={`form-control`} onChange={this.handleTyping} placeholder="Surname"/>
                     </div>
                     <div className="col-4">
-                        <input type="date" name="birthday" value={this.state.birthday} className={`form-control`} onChange={this.handleTyping} placeholder="Birthday"/>
+                        <input type="date" name="birthday" value={this.state.birthday} className={`form-control`} onChange={this.handleTyping} placeholder="Birthday" />
                     </div>
                     <div className="col-4 mt-4">
                         <Tags name="tag" onTagChange={this.handleTyping} firstOptionName="Favourite tag" class="form-control" value={this.state.tag}/>
@@ -94,7 +98,9 @@ class SignIn extends React.Component {
                     <div className="col-12 mt-4">
                         <button className="btn-primary btn">Sign in</button>
                     </div>
+                    
                 </form>
+
             </div>
         );
     }
