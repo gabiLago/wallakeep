@@ -3,6 +3,7 @@ import './ContactUs.css';
 import {getSavedMessages, saveMessages, signedIn} from "../../services/Util";
 import ContactUsForm from "../contact-us-form/ContactUsForm";
 import MyMessages from "../my-messages/MyMessages";
+import MyMessagesContext from "../my-messages/MyMessagesContext";
 
 export default class ContactUs extends React.Component {
     constructor(props) {
@@ -22,9 +23,9 @@ export default class ContactUs extends React.Component {
 
     onSubmit(message) {
         const {messages} = this.state;
-
+        
         messages.push(message);
-
+        
         this.setState({messages}, () => {
             saveMessages(this.state.messages);
         });
@@ -38,10 +39,11 @@ export default class ContactUs extends React.Component {
                         <ContactUsForm onSubmit={this.onSubmit}/>
                     </div>
                     <div className="col-6 text-center">
-                        {
-                            //TODO 4. Es necesario un contexto para poder pasarle los mensajes 
-                        }
-                        <MyMessages/>
+                    {   //! 4. Es necesario un contexto para poder pasarle los mensajes 
+                    }
+                        <MyMessagesContext.Provider value={this.state.messages}>
+                            <MyMessages messages={this.state.messages}/>
+                        </MyMessagesContext.Provider>                        
                     </div>
                 </div>
             </div>
