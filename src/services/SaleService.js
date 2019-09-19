@@ -1,9 +1,6 @@
 import {API, HOST, ADS_PATH, apiToken} from "./Util";
 
 export default class SaleService {
-   
-
-
     getSales({start, limit, sort, includeTotal = true, tag, price, name}) {
     
         //? Empezamos la query
@@ -12,7 +9,7 @@ export default class SaleService {
         //? API token needed on query string
         query += `jwttoken=${apiToken()}`;
                 
-        //! 2. Faltan añadir a la query los demás campos
+        //* 2. Faltan añadir a la query los demás campos
         //? Query for "nombre"
         query += name ? `&nombre=${name}` : "";
 
@@ -34,6 +31,6 @@ export default class SaleService {
             method: "GET"
         }).then(res => res.json());
         
-        //! 2. Eliminar estas líneas y realizar la llamada a NodePop para obtener todos los tags
+        //* 2. Eliminar estas líneas y realizar la llamada a NodePop para obtener todos los tags
     }
 }

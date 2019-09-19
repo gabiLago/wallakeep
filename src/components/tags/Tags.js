@@ -5,7 +5,7 @@ import {apiLogIn, API_TOKEN} from "../../services/Util";
 
 
 // ESTE FICHERO NO HAY QUE TOCARLO
-//* Minor adjustments on res array made to fit on my nodepop version and 'value' added to defaultProps to allow favouriteTag on the Select
+//? Minor adjustments on res array made to fit on my nodepop version and 'value' added to defaultProps to allow favouriteTag on the Select
 
 const service = new SaleService();
 

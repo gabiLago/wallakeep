@@ -9,32 +9,29 @@ import Tags from "../tags/Tags";
 const service = new SaleService();
 
 export default class SaleSearch extends React.Component {
+
     constructor(props) {
-        super(props);
+        super(props);   
         
-        //!  3. Comprobar que el usuario se ha registrado        
+        //*  3. Comprobar que el usuario se ha registrado        
         if (!signedIn()) {
             props.history.push("/sign-in")
         }
         
-        //! 3. Si el usuario especificó un tag en el registro, se debe añadir por defecto a la búsqueda
+        //* 3. Si el usuario especificó un tag en el registro, se debe añadir por defecto a la búsqueda
         
         this.state = {
             search: {},
         };
-
-        //* this.search(); It´s redundant once componentDidMount already does it
-        
+            
         this.handleSearch = this.handleSearch.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.search = this.search.bind(this);
-        
-        //? Retrieve the tags needed to filter sales       
-        //! Este servicio como el <select> que hay en el render se pueden sustituir por el componente <Tags>
     }
 
+
     componentDidMount() {
-        //* Retrieve the favourite tag from SigIn and send a Search
+        //? Retrieve the favourite tag from SigIn and send a Search
         if(currentUser().tag){
             let favTag = currentUser().tag;
             this.setState({ tag : favTag });
@@ -48,10 +45,11 @@ export default class SaleSearch extends React.Component {
         const {name, value} = event.target;
         this.setState({ [name]: event.target.value });
         this.handleSearch(name, value)
+        
     }
   
     handleSearch(name, value) {
-        //* Added prevState to avoid overwriting the state only with data from one field. Now it filters from both Inputs and the Select
+        //? Added prevState to avoid overwriting the state only with data from one field. Now it filters from both Inputs and the Select
         this.setState(prevState => ({
             search: {
                 ...prevState.search,
@@ -63,7 +61,7 @@ export default class SaleSearch extends React.Component {
     }   
     
     search() {
-        //! 2. Llamar al servicio service.getSales(this.state.search), gestionar su petición y añadir al estado su resultado
+        //* 2. Llamar al servicio service.getSales(this.state.search), gestionar su petición y añadir al estado su resultado
         service.getSales(this.state.search).then((data) => this.setState({sales: data.result}))      
     }
 
@@ -83,7 +81,7 @@ export default class SaleSearch extends React.Component {
                         <h2>No se han encontrado elementos</h2>
                     </div>
                 }
-
+                
                 {
                     this.state.sales
                     &&

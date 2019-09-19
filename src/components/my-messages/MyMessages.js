@@ -22,7 +22,7 @@ export default class MyMessages extends Component {
                         </th>
                     </tr>
                     
-                    {//! Mostrar los mensajes en la tabla a través de una función map
+                    {//* Mostrar los mensajes en la tabla a través de una función map
                     messages.map((message) => 
                         <tr key={Math.floor((Math.random() * 100) + 1)*Date.now()}>
                             <td>{message.subject}</td>
@@ -36,5 +36,5 @@ export default class MyMessages extends Component {
     }
 }
 
-// ! 4. Añadir el contextType para que así el componente pueda usar el contexto (MyMessages.contextType...)
+//* 4. Añadir el contextType para que así el componente pueda usar el contexto (MyMessages.contextType...)
 MyMessages.contextType = MyMessagesContext;
