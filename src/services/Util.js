@@ -1,7 +1,7 @@
 // IMPORTANTE
 // En este fichero encontrarás utilidades que te ayudarán a completar la práctica. Lee con atención todas las funciones antes de empezar a realizar la práctica.
 
-export const HOST = "http://localhost:3000";
+export const HOST = "https://nodepop.lagoblasco.es";
 export const API = `apiv1`;
 export const LOGIN_PATH = 'usuarios/login/';
 export const ADS_PATH = 'anuncios';
@@ -42,7 +42,7 @@ export const currentUser = () => {
 
 
 export const apiToken = () => {
-    return JSON.parse(localStorage.getItem(API_TOKEN));
+    return JSON.parse(sessionStorage.getItem(API_TOKEN));
 }
 
 export const getSavedMessages = () => {
@@ -54,6 +54,8 @@ export const saveMessages = (messages) => {
 };
 
 export const apiLogIn = () => {
+//? Originally nodepoop han an auth module enabled.
+//? A Token is needed to get valid responses
     return (
         fetch(`${HOST}/${API}/${LOGIN_PATH}`, {
             method: 'POST',
@@ -68,7 +70,3 @@ export const apiLogIn = () => {
         })
     ).then(res => res.json());
   }
-
-export const authOnApi = () => {
-    apiLogIn().then((data) => localStorage.setItem(API_TOKEN, JSON.stringify(data.result)))
-}

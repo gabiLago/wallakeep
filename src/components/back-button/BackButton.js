@@ -14,9 +14,9 @@ class BackButton extends React.Component {
 
     render() {
         return (
-            <span className={`nav-bar-link`} onClick={() => this.props.history.goBack()}>
+            <button className={`btn btn-warning`} onClick={() => this.props.history.goBack()}>
                 Volver
-            </span>
+            </button>
         );
     }
 }

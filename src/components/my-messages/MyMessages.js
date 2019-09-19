@@ -11,7 +11,7 @@ export default class MyMessages extends Component {
             <div>
                 <h4 className={`ml-2 mb-4`}>Your messages</h4>
                 
-                <table style={{width: "100%"}}>
+                <table className={`table`}>
                     <tbody>
                     <tr>
                         <th>

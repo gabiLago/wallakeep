@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import SaleService from "../../services/SaleService";
+import {apiLogIn, API_TOKEN} from "../../services/Util";
 
 
 
@@ -15,14 +16,26 @@ export default class Tags extends Component {
         this.state = {
             tags: []
         };
+    }
 
-        service.getTags().then((res) => {
-            if (res) {
-                this.setState({
-                    tags: res.result
-                })
-            }
-        });
+    componentDidMount(){
+        this.initOnApi();
+    }
+
+    initOnApi(){
+        apiLogIn().then((data) => {
+            sessionStorage.setItem(API_TOKEN, JSON.stringify(data.result))
+            //? Token stored on Session Storage
+
+            service.getTags().then((res) => {
+                if (res) {
+                    this.setState({
+                        tags: res.result
+                    })
+                }
+            })
+         })
+        
     }
 
     render() {
@@ -30,7 +43,9 @@ export default class Tags extends Component {
   
             <select name={this.props.name} onChange={this.props.onTagChange} className={this.props.class} value={this.props.value}>
                 <option value="">{this.props.firstOptionName}</option>
-                {this.state.tags.map((tag, index) => <option key={`${tag}-${index}`} value={tag}>{tag}</option>)}
+                {this.state.tags &&
+                    this.state.tags.map((tag, index) => <option key={`${tag}-${index}`} value={tag}>{tag}</option>)
+                }
             </select>
         );
     }

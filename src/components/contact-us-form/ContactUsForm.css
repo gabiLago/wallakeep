@@ -1,4 +1,8 @@
-.contact-form-input {
+/*.contact-form-input {
     max-width: 400px;
     margin: 10px;
+}*/
+
+.input-group-text{
+    min-width: 100px
 }

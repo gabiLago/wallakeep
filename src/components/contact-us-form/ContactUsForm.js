@@ -55,6 +55,11 @@ export default class ContactUsForm extends React.Component {
             subject,
             message
           });
+
+          this.setState({
+              subject: "",
+              message: ""
+          })
     }
 
     fieldValidation(fieldValue, minChars, fieldName){
@@ -64,7 +69,7 @@ export default class ContactUsForm extends React.Component {
             return false            
         } 
         
-        if (fieldValue.trim().length <= minChars) {
+        if (fieldValue.trim().length <   minChars) {
             alert(`The ${fieldName} must be bigger than ${minChars} characters`);
             return false
         } 
@@ -78,25 +83,34 @@ export default class ContactUsForm extends React.Component {
             <h4 className={`ml-2 mb-4`}>Contact with the WallaKeep team</h4>
 
             <form onSubmit={this.handleSubmit}>
-                <div>
-                    <h5 className={`ml-2`}><b>Name</b></h5>
-                    <input className={`form-control d-block contact-form-input`} type="text" name="name" value={this.state.name} onChange={this.handleChange}/>
-                </div>
-                <div>
-                    <h5 className={`ml-2`}><b>Surname</b></h5>
-                    <input className={`form-control d-block contact-form-input`} type="text" name="surname" value={this.state.surname} onChange={this.handleChange}/>
-                </div>
-                <div>
-                    <h5 className={`ml-2`}><b>Subject</b></h5>
-                    <input className={`form-control d-block contact-form-input`} type="text" name="subject" value={this.state.subject} onChange={this.handleChange}/>
-                </div>
-                <div>
-                    <h5 className={`ml-2`}><b>Message</b></h5>
-                    <textarea className={`form-control d-block contact-form-input`} name="message" cols="30" rows="10" value={this.state.message} onChange={this.handleChange}/>
-                </div>
-                <div className={`ml-2`}>
-                    <button type="submit" className="btn-primary btn">Save</button>
-                </div>
+
+                    <div className="input-group mb-3">
+                        <div className="input-group-prepend">   
+                            <span className="input-group-text">Name</span>
+                        </div>
+                        <input className={`form-control d-block contact-form-input`} type="text" name="name" value={this.state.name} onChange={this.handleChange}/>
+                    </div>
+                    <div className="input-group mb-3">
+                        <div className="input-group-prepend">   
+                            <span className="input-group-text">Surname</span>
+                        </div>
+                        <input className={`form-control d-block contact-form-input`} type="text" name="surname" value={this.state.surname} onChange={this.handleChange}/>
+                    </div>
+                    <div className="input-group mb-3">
+                        <div className="input-group-prepend">   
+                            <span className="input-group-text">Subject</span>
+                        </div>              
+                        <input className={`form-control d-block contact-form-input`} type="text" name="subject" value={this.state.subject} onChange={this.handleChange}/>
+                    </div>
+                    <div className="input-group mb-3">
+                        <div className="input-group-prepend">   
+                            <span className="input-group-text">Message</span>
+                        </div>                
+                        <textarea className={`form-control d-block contact-form-input`} name="message" cols="30" rows="10" value={this.state.message} onChange={this.handleChange}/>
+                    </div>
+                    <div className={`ml-2`}>
+                        <button type="submit" className="btn-info btn">Save</button>
+                    </div>
             </form>
         </>;
     }

@@ -24,7 +24,7 @@ export default class SaleService {
 
         return fetch(`${HOST}/${API}/${ADS_PATH}${query}`, {
             method: "GET"
-        }).then(res => res.json());
+        }).then(res => res.json()); 
     }
 
     getTags() {

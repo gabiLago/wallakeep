@@ -24,13 +24,9 @@ export default class SaleItemFullScreen extends React.Component {
         // DON'T DO IT in real application, this is only educational purpose
         service.getSales({}).then((res) => {
             const items = res.result;
-            console.log(items) 
-
-            //console.log(this.props.match.params)
            
             let item = items.find((item) => item._id === this.props.match.params.id);
 
-            console.log('Item: '+ JSON.stringify(item))
             if (!item) {
                 this.props.history.goBack();
             }
@@ -38,6 +34,7 @@ export default class SaleItemFullScreen extends React.Component {
             this.setState({
                 item
             })
+            
         });
 
     }
@@ -50,7 +47,7 @@ export default class SaleItemFullScreen extends React.Component {
                 <BackButton/>
                 <div className="text-center">
                     <img className={`item-image`} src={`${HOST}${this.state.item.foto}`} alt={this.state.item.nombre}/>
-                    <h3>Se {this.state.item.venta ? "vende" : "alquila"} "{this.state.item.nombre}" por {this.state.item.precio} euros.</h3>
+                    <h3>Se {this.state.item.venta ? "vende" : "busca"} "{this.state.item.nombre}" por {this.state.item.precio} euros.</h3>
                 </div>
             </div>
         );
