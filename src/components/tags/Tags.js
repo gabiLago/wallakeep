@@ -40,7 +40,7 @@ export default class Tags extends Component {
 
     render() {
         return (
-  
+            
             <select name={this.props.name} onChange={this.props.onTagChange} className={this.props.class} value={this.props.value}>
                 <option value="">{this.props.firstOptionName}</option>
                 {this.state.tags &&

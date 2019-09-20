@@ -1,4 +1,4 @@
-/*.nav-bar-link {
+.nav-bar-link {
     color: white;
     padding: 0 15px;
     margin: 0 5px;
@@ -8,19 +8,25 @@
     cursor: pointer;
 }
 
-.active > a {
-    font-weight: bold;
+#navbar .btn{
+    margin: 0 0.25em 0 0;
 }
 
-.nav-bar-link > a {
+#navbar .btn  a {
     color: white;
 }
+
+#navbar .btn.active a {
+    font-weight: bold;
+    color: #000
+}
+
 
 .nav-bar-link:hover > a {
     text-decoration: none;
     font-weight: bold;
 }
-*/
+
 #navbar{
     margin-top: 20px
 }

@@ -37,13 +37,13 @@ class Navbar extends React.Component {
     render() {
         return (
             <div className="container" id="navbar">
-                <button className={`btn btn-light ${this.isActive(HOME_PATH)}`}><
+                <button className={`btn btn-info ${this.isActive(HOME_PATH)}`}><
                     Link to={HOME_PATH}> Home </Link>
                 </button>
-                <button className={`btn btn-light ${this.isActive(SEARCH_PATH)}`}>
+                <button className={`btn btn-info ${this.isActive(SEARCH_PATH)}`}>
                     <Link to={SEARCH_PATH}> Search </Link>
                 </button>
-                <span className={`btn btn-light ${this.isActive(CONTACT_US_PATH)}`}>
+                <span className={`btn btn-info ${this.isActive(CONTACT_US_PATH)}`}>
                     <Link to={CONTACT_US_PATH}> Contact us </Link>
                 </span>
                 <button className={`btn btn-dark float-right`} onClick={this.logout}>

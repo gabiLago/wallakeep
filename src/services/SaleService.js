@@ -1,9 +1,9 @@
 import {API, HOST, ADS_PATH, apiToken} from "./Util";
 
 export default class SaleService {
-    getSales({start, limit, sort, includeTotal = true, tag, price, name}) {
+    getSales({name, price, priceSearchMode, tag}) {
     
-        //? Empezamos la query
+        //* Empezamos la query
         let query = "?";
 
         //? API token needed on query string
@@ -13,9 +13,24 @@ export default class SaleService {
         //? Query for "nombre"
         query += name ? `&nombre=${name}` : "";
 
-        //? Query for "precio"
-        query += price ? `&precio=${price}-` : "";
+        //? Query for "precio" filtrando modos de búsqueda
+        switch(priceSearchMode){
+            //? Menor que
+            case "1":
+            query += price ? `&precio=-${price}` : "";
+            break;
 
+            //? Rango
+            case "2":
+            query += price ? `&precio=${price}` : "";
+            break;
+
+            //? Mayor que
+            default:
+            query += price ? `&precio=${price}-` : "";
+            break;
+        }
+        
         //? Query for "tags"
         query += tag !== undefined ? `&tag=${tag}` : "";
 

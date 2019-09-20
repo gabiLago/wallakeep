@@ -74,8 +74,8 @@ class SignIn extends React.Component {
             <div>
             <Header />
             <div className={`container`} id="signInForm">
-                <div class="row justify-content-center">
-                    <form className="col-4" onSubmit={this.handleSignIn}>
+                <div className={`row justify-content-center`}>
+                    <form className={`col-4`} onSubmit={this.handleSignIn}>
                         <div>
                             <h3>Please Sign In</h3>
                         </div>

@@ -21,12 +21,13 @@ export default class SaleSearch extends React.Component {
         //* 3. Si el usuario especificó un tag en el registro, se debe añadir por defecto a la búsqueda
         
         this.state = {
-            search: {},
+            search: {}
         };
             
         this.handleSearch = this.handleSearch.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.search = this.search.bind(this);
+       
     }
 
 
@@ -43,10 +44,22 @@ export default class SaleSearch extends React.Component {
 
     handleChange(event) {
         const {name, value} = event.target;
+
+        if(name === 'priceSearchMode'){
+            if(this.state.priceSearchMode === "2"){
+                console.log('ARRRRJ Rango')
+                this.setState.inputType = 'text'
+            } else {
+                console.log('NO Rango')
+                this.setState.inputType = 'date'
+            }    
+        } 
+
         this.setState({ [name]: event.target.value });
         this.handleSearch(name, value)
         
     }
+
   
     handleSearch(name, value) {
         //? Added prevState to avoid overwriting the state only with data from one field. Now it filters from both Inputs and the Select
@@ -67,11 +80,25 @@ export default class SaleSearch extends React.Component {
 
     render() {
         return (
+            
             <div className={`sale-search container`}>
-                <form className="row mb-3">
-                    <input name="name" onChange={this.handleChange} className={`form-control col-2 ml-4`} placeholder={`Filter by name`}/>
-                    <input name="price" type="number" onChange={this.handleChange} className={`form-control col-1 ml-4`} placeholder={`Price`}/>
+                <form className="row mb-3" id="searchForm">
+                    <input name="name" onChange={this.handleChange} className={`form-control col-3 ml-4`} placeholder={`Filter by name`}/>
+                    
+                    <select name="priceSearchMode" onChange={this.handleChange} className={`form-control`}>
+                        <option key="priceSearchMode0" value="0">Higher than</option>
+                        <option key="priceSearchMode1" value="1">Lower than</option>
+                        <option key="priceSearchMode2" value="2">Range (50-100)</option>
+                    </select>
+
+                    <input name="price" onChange={this.handleChange} className={`form-control col-1`} placeholder={`Price`}/>
+                    <div className="input-group-append">
+                        <span className="input-group-text">&euro;</span>
+                    </div>
+                    
+                    
                     <Tags name="tag" onTagChange={this.handleChange} value={this.state.tag}/>
+  
                 </form>
                        
                 {

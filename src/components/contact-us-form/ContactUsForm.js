@@ -82,7 +82,7 @@ export default class ContactUsForm extends React.Component {
         return <>
             <h4 className={`ml-2 mb-4`}>Contact with the WallaKeep team</h4>
 
-            <form onSubmit={this.handleSubmit}>
+            <form onSubmit={this.handleSubmit} id="contactUs">
 
                     <div className="input-group mb-3">
                         <div className="input-group-prepend">   
