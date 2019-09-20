@@ -18,9 +18,9 @@
 		
 	* Estos son los ajustes que he tenido que hacer:
     	1. **Authentication**. La práctica de nodepop en pincipio requería autenticación con JWT. No he deshabilitado el módulo por lo que en la app de React he añadido una llamada previa para que se autentique en la API y recoja en el token que tiene que ir como parametro en todas las queries.
-    	2. **Precio**. He añadido un select para utilizar 
-    	3. **Llamadas**. Los párametros de las querys y los response también he tenido que cambiarlos un poco
+    	2. **Precio**. He añadido un select para utilizar las 3 opciones de filtrado por precio que tenía que permitir nodepop: mayor que, menor que y por rango.
+    	3. **Llamadas**. Los párametros de las queries y la estructura de los response también he tenido que cambiarlos un poco.
 	
 
 * **HTML y css**
-	* Por alguna razón a mí se me descuadraba todo bastante en el navegador, he cargado el css de bootstrap y he hecho algunos ajustes para que se cuadrara todo razonable. Esero que no te moleste.
+	* Por alguna razón a mí se me descuadraba todo bastante en el navegador, he cargado el css de bootstrap y he hecho algunos ajustes, espero que no te moleste ;-)
