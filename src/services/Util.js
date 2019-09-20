@@ -8,6 +8,7 @@ export const ADS_PATH = 'anuncios';
 
 export const API_USER = 'admin@example.org';
 export const API_PASSWORD = '1234';
+//* This wouldn´t be here if it weren´t a practice exercise
 export const API_TOKEN = "currentToken";
 
 export const USER_SESSION_KEY = "currentUser";
@@ -42,7 +43,7 @@ export const currentUser = () => {
 
 
 export const apiToken = () => {
-    return JSON.parse(sessionStorage.getItem(API_TOKEN));
+    return JSON.parse(localStorage.getItem(API_TOKEN));
 }
 
 export const getSavedMessages = () => {

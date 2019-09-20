@@ -24,7 +24,7 @@ export default class Tags extends Component {
 
     initOnApi(){
         apiLogIn().then((data) => {
-            sessionStorage.setItem(API_TOKEN, JSON.stringify(data.result))
+            localStorage.setItem(API_TOKEN, JSON.stringify(data.result))
             //? Token stored on Session Storage
 
             service.getTags().then((res) => {
